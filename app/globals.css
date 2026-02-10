@@ -1,26 +1,208 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Colors */
+    --bg-primary: #F8F8F6;
+    --text-primary: #2A2A2A;
+    --text-secondary: #5A5A5A;
+    --text-link: #1A1A1A;
+    
+    /* Typography - Modern Sans-Serif */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    --line-height-body: 1.6;
+    --line-height-heading: 1.2;
+    
+    /* Spacing */
+    --space-paragraph: 1.5rem;
+    --space-section: 3rem;
+    
+    /* Reading width */
+    --max-reading-width: 65ch;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: var(--line-height-body);
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: var(--line-height-heading);
+    margin-top: var(--space-section);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 1.875rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin-bottom: var(--space-paragraph);
+  }
+
+  a {
+    color: var(--text-link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s;
+  }
+
+  a:hover {
+    opacity: 0.7;
+  }
+
+  ul, ol {
+    margin-bottom: var(--space-paragraph);
+    padding-left: 2rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  code {
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    font-size: 0.9em;
+    background: #F0F0EE;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+  }
+
+  pre {
+    background: #F0F0EE;
+    padding: 1.5rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-bottom: var(--space-paragraph);
+  }
+
+  pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  blockquote {
+    border-left: 3px solid var(--text-secondary);
+    padding-left: 1.5rem;
+    margin: var(--space-paragraph) 0;
+    font-style: italic;
+    color: var(--text-secondary);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .link-bold {
+    font-weight: 800;
+  }
+
+  .link-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: inherit;
+    transition: opacity 0.2s;
+  }
+
+  .link-nav:hover {
+    font-weight: 600;
+    opacity: 1;
+  }
+
+  .link-nav-container {
+    display: flex;
+    gap: 48px;
+  }
+
+  .home-grid {
+    display: flex;
+    gap: 3%;
+    height: calc(100vh - 10%);
+  }
+
+  .home-left {
+    width: 50%;
+    overflow-y: auto;
+    padding-right: 2rem;
+  }
+
+  .home-right {
+    width: 50%;
+    overflow-y: auto;
+    padding-left: 2rem;
+  }
+
+  .fixed-nav {
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-primary);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    z-index: 10;
+  }
+
+  .prose {
+    max-width: var(--max-reading-width);
+    margin: 0 auto;
+  }
+
+  @media (max-width: 1024px) {
+    .home-grid {
+      flex-direction: column;
+      height: auto;
+      gap: 3rem;
+    }
+    .home-left, .home-right {
+      width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+      overflow-y: visible;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .home-main {
+      overflow: hidden;
+      height: 100vh;
+    }
+  }
+}
+
+@layer utilities {
+  @media (max-width: 768px) {
+    body {
+      font-size: 1rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+    
+    h3 {
+      font-size: 1.25rem;
+    }
+  }
 }

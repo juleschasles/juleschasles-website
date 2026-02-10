@@ -1,65 +1,110 @@
-import Image from "next/image";
+import Link from 'next/link'
+import { getAllPosts } from '@/lib/posts'
 
 export default function Home() {
+  const posts = getAllPosts().slice(0, 20)
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="home-main" style={{ 
+      minHeight: '100vh',
+      padding: '5%'
+    }}>
+
+      <div className="home-grid">
+        {/* Left Column - Bio */}
+        <div className="home-left">
+          <h1 className="text-4xl font-semibold mb-3">
+            Jules Chasles
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          
+          <p className="text-sm mb-8 text-[#5A5A5A]">
+            Partner at <a href="https://www.dopaminecap.com" target="_blank" rel="noopener noreferrer" className="link-bold">Dopamine</a> — helping founders raise capital in MENA
           </p>
+
+          <div className="space-y-4 mb-10 text-sm leading-relaxed">
+            <p>
+              I run Dopamine, a strategic capital advisory for emerging companies. We help founders raise the right capital, from the right investors, on the right terms—guiding them from pitch deck to deal close. We're not pure introducers: we help you understand fundraising dynamics, build your narrative, structure deals properly, and avoid irreversible mistakes.
+            </p>
+            
+            <p>
+              Before starting Dopamine, I was a Principal at Global Ventures, where I led value creation and the investment process—supporting founders on fundraising, strategy, and scaling across the Middle East, Africa, and Europe. Earlier, I invested in African tech startups at Outlierz Ventures in Morocco and worked in private equity at AfricInvest Group, building expertise in due diligence, business modeling, and financial valuation.
+            </p>
+            
+            <p>
+              I studied at HEC Paris (MBA), Bocconi University (MSc), and Warwick Business School (BSc). I'm based in Dubai.
+            </p>
+          </div>
+
+          <div className="link-nav-container text-sm">
+            <a 
+              href="https://www.linkedin.com/in/jules-chasles/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="link-nav"
+            >
+              <span className="text-xs">↗</span>
+              LinkedIn
+            </a>
+            <a 
+              href="https://www.dopaminecap.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="link-nav"
+            >
+              <span className="text-xs">↗</span>
+              Book a Session
+            </a>
+            <a 
+              href="mailto:jules@dopaminecap.com"
+              className="link-nav"
+            >
+              <span className="text-xs">↗</span>
+              Email
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Right Column - Blog Posts */}
+        <div className="home-right">
+          {/* Spacer to align "Thoughts" with the tagline text below the name */}
+          <div className="text-4xl font-semibold mb-3 invisible" aria-hidden="true">&#8203;</div>
+
+          <div className="flex items-baseline justify-between">
+            <h2 className="text-sm font-semibold" style={{ margin: 0 }}>Thoughts</h2>
+            <Link 
+              href="/blog"
+              target="_blank"
+              className="text-xs text-[#5A5A5A] hover:text-[#2A2A2A] no-underline"
+            >
+              Read all →
+            </Link>
+          </div>
+
+          <div className="space-y-2" style={{ marginTop: '1.5rem' }}>
+            {posts.length === 0 ? (
+              <p className="text-[#5A5A5A] text-sm">No posts yet.</p>
+            ) : (
+              posts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  target="_blank"
+                  className="flex justify-between items-baseline gap-4 hover:opacity-70 transition-opacity no-underline"
+                >
+                  <span className="text-sm font-normal">{post.title}</span>
+                  <span className="text-sm text-[#5A5A5A] whitespace-nowrap">
+                    Last updated {new Date(post.date).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric'
+                    })}
+                  </span>
+                </Link>
+              ))
+            )}
+          </div>
         </div>
-      </main>
-    </div>
-  );
+      </div>
+    </main>
+  )
 }
