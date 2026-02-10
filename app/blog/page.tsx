@@ -13,9 +13,11 @@ export default function BlogPage() {
           </Link>
         </div>
 
-        <div style={{ height: '3rem' }} />
-
         <h1 className="text-4xl font-semibold mb-8">Thoughts</h1>
+
+        <p className="text-sm text-[#5A5A5A] mb-8 leading-relaxed">
+          These thoughts are drawn from reading, experience, and conversation. Ideas are rarely wholly new, but rather refinements of what came before. These thoughts are just my attempts to understand foundational ideas better and pass them forward with more clarity. They'll evolve as my understanding deepens.
+        </p>
 
         {posts.length === 0 ? (
           <p className="text-[#5A5A5A] text-sm">No posts yet. Coming soon.</p>
