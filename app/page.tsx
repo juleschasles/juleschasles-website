@@ -18,20 +18,20 @@ export default function Home() {
           </h1>
           
           <p className="text-sm mb-8 text-[#5A5A5A]">
-            Partner at <a href="https://www.dopaminecap.com" target="_blank" rel="noopener noreferrer" className="link-bold">Dopamine</a> — helping founders raise capital in MENA
+            Partner at <a href="https://www.dopaminecap.com" target="_blank" rel="noopener noreferrer" className="link-bold">Dopamine</a> — advising founders through hard problems
           </p>
 
           <div className="space-y-4 mb-10 text-sm leading-relaxed">
             <p>
-              I run Dopamine, a strategic capital advisory for emerging companies. We help founders raise the right capital, from the right investors, on the right terms—guiding them from pitch deck to deal close. We're not pure introducers: we help you understand fundraising dynamics, build your narrative, structure deals properly, and avoid irreversible mistakes.
+              I am a Partner at Dopamine, a strategic capital advisory firm for emerging companies. We help founders raise the right capital, from the right investors, on the right terms. We guide them through their transactions. We help them understand fundraising dynamics, build their narrative, avoid irreversible mistakes, and structure deals properly (governance, legal, cap table), while making introductions to relevant investors.
             </p>
             
             <p>
-              Before starting Dopamine, I was a Principal at Global Ventures, where I led value creation and the investment process—supporting founders on fundraising, strategy, and scaling across the Middle East, Africa, and Europe. Earlier, I invested in African tech startups at Outlierz Ventures in Morocco and worked in private equity at AfricInvest Group, building expertise in due diligence, business modeling, and financial valuation.
+              Before starting Dopamine, I was a Principal at Global Ventures, where I led value creation and the investment process: supporting founders on fundraising, governance, strategy, and scaling across the Middle East and Africa. Earlier, I invested in African tech startups at Outlierz Ventures in Morocco and worked in private equity at AfricInvest Group in Tunisia and Côte d'Ivoire, building expertise in due diligence, business modeling, and financial valuation.
             </p>
             
             <p>
-              I studied at HEC Paris (MBA), Bocconi University (MSc), and Warwick Business School (BSc). I'm based in Dubai.
+              I studied at HEC Paris (MBA), Bocconi University (MSc), and Warwick Business School (BSc). I'm based in Dubai, UAE.
             </p>
           </div>
 
@@ -53,13 +53,6 @@ export default function Home() {
             >
               <span className="text-xs">↗</span>
               Book a Session
-            </a>
-            <a 
-              href="mailto:jules@dopaminecap.com"
-              className="link-nav"
-            >
-              <span className="text-xs">↗</span>
-              Email
             </a>
           </div>
         </div>
