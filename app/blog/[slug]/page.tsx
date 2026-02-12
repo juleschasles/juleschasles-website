@@ -66,7 +66,6 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           </a>
           <a 
             href={linkedInShareUrl}
-            target="_blank"
             rel="noopener noreferrer"
             className="link-nav"
           >

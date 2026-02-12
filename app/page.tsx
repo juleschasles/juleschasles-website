@@ -6,8 +6,9 @@ export default function Home() {
 
   return (
     <main className="home-main" style={{ 
-      minHeight: '100vh',
-      padding: '5%'
+      height: '100vh',
+      padding: '3% 5% 0 5%',
+      overflow: 'hidden'
     }}>
 
       <div className="home-grid">
@@ -66,7 +67,6 @@ export default function Home() {
             <h2 className="text-sm font-semibold" style={{ margin: 0 }}>Thoughts</h2>
             <Link 
               href="/blog"
-              target="_blank"
               className="text-xs text-[#5A5A5A] hover:text-[#2A2A2A] no-underline"
             >
               Read all →
@@ -81,7 +81,6 @@ export default function Home() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  target="_blank"
                   className="flex justify-between items-baseline gap-4 hover:opacity-70 transition-opacity no-underline"
                 >
                   <span className="text-sm font-normal">{post.title}</span>
