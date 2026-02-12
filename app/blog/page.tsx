@@ -5,7 +5,7 @@ export default function BlogPage() {
   const posts = getAllPosts()
 
   return (
-    <main className="min-h-screen" style={{ padding: '3%' }}>
+    <main className="min-h-screen" style={{ padding: '5%' }}>
       <div style={{ maxWidth: '65ch' }}>
         <div className="text-sm mb-8 fixed-nav">
           <Link href="/" className="no-underline hover:opacity-70 transition-opacity">

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className="home-main" style={{ 
       height: '100vh',
-      padding: '3% 5% 0 5%',
+      padding: '5% 5% 0 5%',
       overflow: 'hidden'
     }}>
 
