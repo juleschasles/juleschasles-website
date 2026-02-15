@@ -29,7 +29,7 @@ export default function BlogPage() {
                 href={`/blog/${post.slug}`}
                 className="flex justify-between items-baseline gap-4 hover:opacity-70 transition-opacity no-underline"
               >
-                <span className="text-sm font-normal font-bold">{post.title}</span>
+                <span className="text-sm font-normal font-semibold">{post.title}</span>
                 <span className="text-sm text-[#5A5A5A] whitespace-nowrap">
                   Last updated {new Date(post.date).toLocaleDateString('en-US', {
                     month: 'short',
