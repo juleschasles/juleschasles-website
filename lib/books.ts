@@ -10,6 +10,7 @@ export interface Book {
   author: string
   date: string
   note: string
+  amazonUrl: string
 }
 
 export function getAllBooks(): Book[] {
@@ -32,6 +33,7 @@ export function getAllBooks(): Book[] {
         author: data.author || '',
         date: data.date || '',
         note: data.note || '',
+        amazonUrl: data.amazonUrl || '',
       }
     })
 
