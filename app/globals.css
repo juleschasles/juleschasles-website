@@ -114,16 +114,10 @@
     height: calc(100vh - 10%);
   }
 
-  .home-right {
-    display: flex;
-    flex-direction: column;
-  }
-
   .home-left {
     width: 50%;
     overflow-y: auto;
     padding-right: 2rem;
-    /* Hide scrollbar but keep functionality */
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
@@ -134,16 +128,20 @@
     width: 50%;
     overflow: hidden;
     padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .right-section {
-    height: 1vh;
+    flex: 1;
     overflow: hidden;
-    padding-bottom: 2rem;
   }
 
   .right-section h2 {
-    margin-bottom: 3.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 2rem;
   }
 
   .fixed-nav {
