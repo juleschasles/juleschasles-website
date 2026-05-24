@@ -137,11 +137,10 @@
     overflow: hidden;
   }
 
-  .right-section h2 {
+  .section-heading {
     font-size: 0.875rem;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 2rem;
+    font-weight: 700;
+    display: block;
   }
 
   .fixed-nav {
