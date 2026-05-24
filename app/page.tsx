@@ -96,21 +96,32 @@ export default function Home() {
           <div className="right-section" style={{ marginTop: '3rem' }}>
             <div className="flex items-baseline justify-between mb-6">
               <h2 className="text-sm font-semibold" style={{ margin: 0 }}>Books</h2>
+              <Link href="/books" className="text-xs text-[#5A5A5A] hover:text-[#2A2A2A] no-underline">
+                See all →
+              </Link>
             </div>
             <div className="space-y-2">
               {books.length === 0 ? (
                 <p className="text-[#5A5A5A] text-sm">No books yet.</p>
               ) : (
                 books.map((book) => (
-                  <div key={book.slug} className="flex justify-between items-baseline gap-4">
-                    <div>
+                  book.amazonUrl ? (
+                    <a
+                      key={book.slug}
+                      href={book.amazonUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex justify-between items-baseline gap-4 hover:opacity-70 transition-opacity no-underline"
+                    >
                       <span className="text-sm font-normal">{book.title}</span>
-                      <span className="text-sm text-[#5A5A5A]"> — {book.author}</span>
+                      <span className="text-sm text-[#5A5A5A] whitespace-nowrap">{book.author}</span>
+                    </a>
+                  ) : (
+                    <div key={book.slug} className="flex justify-between items-baseline gap-4">
+                      <span className="text-sm font-normal">{book.title}</span>
+                      <span className="text-sm text-[#5A5A5A] whitespace-nowrap">{book.author}</span>
                     </div>
-                    {book.note && (
-                      <span className="text-xs text-[#5A5A5A] text-right" style={{ maxWidth: '40%' }}>{book.note}</span>
-                    )}
-                  </div>
+                  )
                 ))
               )}
             </div>
