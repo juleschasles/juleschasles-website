@@ -62,7 +62,7 @@ export default function Home() {
 
           {/* Thoughts Section */}
           <div className="right-section">
-            <div className="flex items-baseline justify-between mb-12">
+            <div className="flex items-baseline justify-between mb-32">
               <span className="section-heading">Thoughts</span>
               <Link href="/blog" className="text-xs text-[#5A5A5A] hover:text-[#2A2A2A] no-underline">
                 Read all →
@@ -94,7 +94,7 @@ export default function Home() {
 
           {/* Books Section */}
           <div className="right-section" style={{ marginTop: '3rem' }}>
-            <div className="flex items-baseline justify-between mb-12">
+            <div className="flex items-baseline justify-between mb-32">
               <span className="section-heading">Book Recommendations</span>
               <Link href="/books" className="text-xs text-[#5A5A5A] hover:text-[#2A2A2A] no-underline">
                 See all →
