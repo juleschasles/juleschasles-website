@@ -3,8 +3,8 @@ import { getAllPosts } from '@/lib/posts'
 import { getAllBooks } from '@/lib/books'
 
 export default function Home() {
-  const posts = getAllPosts().slice(0, 20)
-  const books = getAllBooks().slice(0, 20)
+  const posts = getAllPosts().slice(0, 10)
+  const books = getAllBooks().slice(0, 10)
 
   return (
     <main className="home-main">
