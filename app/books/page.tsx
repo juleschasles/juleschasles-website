@@ -22,7 +22,13 @@ export default function BooksPage() {
         {books.length === 0 ? (
           <p className="text-[#5A5A5A] text-sm">No books yet. Coming soon.</p>
         ) : (
-          <div className="space-y-2">
+          <div>
+            <div className="flex items-baseline gap-4 mb-4" style={{ columnGap: '16px' }}>
+              <span className="text-xs text-[#5A5A5A] uppercase tracking-wide" style={{ minWidth: '200px' }}>Title</span>
+              <span className="text-xs text-[#5A5A5A] uppercase tracking-wide" style={{ minWidth: '150px' }}>Author</span>
+              <span className="text-xs text-[#5A5A5A] uppercase tracking-wide">Why I recommend it</span>
+            </div>
+          <div className="space-y-0">
             {books.map((book) => (
               book.amazonUrl ? (
                 <a
@@ -30,24 +36,25 @@ export default function BooksPage() {
                   href={book.amazonUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-baseline gap-6 hover:opacity-70 transition-opacity no-underline w-full"
+                  className="flex items-baseline hover:opacity-70 transition-opacity no-underline w-full" style={{ gap: '16px' }}
                 >
-                  <span className="text-sm font-semibold whitespace-nowrap">{book.title}</span>
-                  <span className="text-sm text-[#5A5A5A] whitespace-nowrap">{book.author}</span>
+                  <span className="text-sm font-semibold whitespace-nowrap" style={{ minWidth: '200px' }}>{book.title}</span>
+                  <span className="text-sm text-[#5A5A5A] whitespace-nowrap" style={{ minWidth: '150px' }}>{book.author}</span>
                   {book.note && (
-                    <span className="text-sm text-[#5A5A5A] truncate">{book.note}</span>
+                    <span className="text-sm text-[#5A5A5A]">{book.note}</span>
                   )}
                 </a>
               ) : (
-                <div key={book.slug} className="flex items-baseline gap-6 w-full">
-                  <span className="text-sm font-semibold whitespace-nowrap">{book.title}</span>
-                  <span className="text-sm text-[#5A5A5A] whitespace-nowrap">{book.author}</span>
+                <div key={book.slug} className="flex items-baseline w-full" style={{ gap: '16px' }}>
+                  <span className="text-sm font-semibold whitespace-nowrap" style={{ minWidth: '200px' }}>{book.title}</span>
+                  <span className="text-sm text-[#5A5A5A] whitespace-nowrap" style={{ minWidth: '150px' }}>{book.author}</span>
                   {book.note && (
-                    <span className="text-sm text-[#5A5A5A] truncate">{book.note}</span>
+                    <span className="text-sm text-[#5A5A5A]">{book.note}</span>
                   )}
                 </div>
               )
             ))}
+          </div>
           </div>
         )}
       </div>
