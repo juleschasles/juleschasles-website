@@ -42,7 +42,7 @@ export default function Home() {
               <span className="text-xs">↗</span>
               LinkedIn
             </a>
-            <a
+            {/*            <a
               href="https://www.dopaminecap.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -50,7 +50,7 @@ export default function Home() {
             >
               <span className="text-xs">↗</span>
               Book a Session
-            </a>
+            </a> */}
           </div>
         </div>
 
