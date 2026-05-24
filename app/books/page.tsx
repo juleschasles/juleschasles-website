@@ -24,9 +24,9 @@ export default function BooksPage() {
         ) : (
           <div>
             <div className="flex items-baseline gap-4 mb-4" style={{ columnGap: '16px' }}>
-              <span className="text-xs text-[#5A5A5A] uppercase tracking-wide" style={{ minWidth: '200px' }}>Title</span>
-              <span className="text-xs text-[#5A5A5A] uppercase tracking-wide" style={{ minWidth: '150px' }}>Author</span>
-              <span className="text-xs text-[#5A5A5A] uppercase tracking-wide">Why I recommend it</span>
+              <span className="text-xs text-[#5A5A5A] tracking-wide" style={{ minWidth: '200px' }}>Title</span>
+              <span className="text-xs text-[#5A5A5A] tracking-wide" style={{ minWidth: '150px' }}>Author</span>
+              <span className="text-xs text-[#5A5A5A] tracking-wide">Why I recommend it</span>
             </div>
           <div className="space-y-0">
             {books.map((book) => (
