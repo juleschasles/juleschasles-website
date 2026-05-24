@@ -95,7 +95,7 @@ export default function Home() {
           {/* Books Section */}
           <div className="right-section" style={{ marginTop: '3rem' }}>
             <div className="flex items-baseline justify-between mb-6">
-              <h2 className="text-sm font-semibold" style={{ margin: 0 }}>Books</h2>
+              <h2 className="text-sm font-semibold" style={{ margin: 0 }}>Book Recommendations</h2>
               <Link href="/books" className="text-xs text-[#5A5A5A] hover:text-[#2A2A2A] no-underline">
                 See all →
               </Link>
