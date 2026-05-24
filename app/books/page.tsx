@@ -6,7 +6,7 @@ export default function BooksPage() {
 
   return (
     <main className="min-h-screen" style={{ padding: '5%' }}>
-      <div style={{ maxWidth: '65ch' }}>
+      <div style={{ width: '100%', maxWidth: '900px' }}>
         <div className="text-sm mb-8 fixed-nav">
           <Link href="/" className="no-underline hover:opacity-70 transition-opacity">
             ← Home
@@ -22,28 +22,31 @@ export default function BooksPage() {
         {books.length === 0 ? (
           <p className="text-[#5A5A5A] text-sm">No books yet. Coming soon.</p>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-2">
             {books.map((book) => (
-              <div key={book.slug} className="flex justify-between items-start gap-4">
-                <div>
-                  {book.amazonUrl ? (
-                    <a
-                      href={book.amazonUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-semibold hover:opacity-70 transition-opacity no-underline"
-                    >
-                      {book.title}
-                    </a>
-                  ) : (
-                    <span className="text-sm font-semibold">{book.title}</span>
-                  )}
-                  <span className="text-sm text-[#5A5A5A]"> — {book.author}</span>
+              book.amazonUrl ? (
+                <a
+                  key={book.slug}
+                  href={book.amazonUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-baseline gap-6 hover:opacity-70 transition-opacity no-underline w-full"
+                >
+                  <span className="text-sm font-semibold whitespace-nowrap">{book.title}</span>
+                  <span className="text-sm text-[#5A5A5A] whitespace-nowrap">{book.author}</span>
                   {book.note && (
-                    <p className="text-sm text-[#5A5A5A] mt-1" style={{ margin: '0.25rem 0 0 0' }}>{book.note}</p>
+                    <span className="text-sm text-[#5A5A5A] truncate">{book.note}</span>
+                  )}
+                </a>
+              ) : (
+                <div key={book.slug} className="flex items-baseline gap-6 w-full">
+                  <span className="text-sm font-semibold whitespace-nowrap">{book.title}</span>
+                  <span className="text-sm text-[#5A5A5A] whitespace-nowrap">{book.author}</span>
+                  {book.note && (
+                    <span className="text-sm text-[#5A5A5A] truncate">{book.note}</span>
                   )}
                 </div>
-              </div>
+              )
             ))}
           </div>
         )}
