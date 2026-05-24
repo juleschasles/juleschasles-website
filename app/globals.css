@@ -114,6 +114,11 @@
     height: calc(100vh - 10%);
   }
 
+  .home-right {
+    display: flex;
+    flex-direction: column;
+  }
+
   .home-left {
     width: 50%;
     overflow-y: auto;
