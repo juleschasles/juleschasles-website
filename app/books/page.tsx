@@ -5,7 +5,7 @@ export default function BooksPage() {
   const books = getAllBooks()
 
   return (
-    <main className="min-h-screen" style={{ padding: '5%' }}>
+    <main className="min-h-screen" style={{ padding: '5% 5% 5% 15%' }}>
       <div style={{ width: '100%', maxWidth: '900px' }}>
         <div className="text-sm mb-8 fixed-nav">
           <Link href="/" className="no-underline hover:opacity-70 transition-opacity">
