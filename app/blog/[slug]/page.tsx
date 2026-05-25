@@ -25,7 +25,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`
 
   return (
-    <main className="min-h-screen" style={{ padding: '5% 5% 5% 15%' }}>
+    <main className="min-h-screen" style={{ padding: '5% 5% 5% 5%' }}>
       <article style={{ maxWidth: '65ch' }}>
         <div className="text-sm fixed-nav flex">
           <Link href="/" className="no-underline hover:opacity-70 transition-opacity">
