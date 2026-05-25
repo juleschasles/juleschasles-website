@@ -42,15 +42,6 @@ export default function Home() {
               <span className="text-xs">↗</span>
               LinkedIn
             </a>
-            {/*            <a
-              href="https://www.dopaminecap.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link-nav"
-            >
-              <span className="text-xs">↗</span>
-              Book a Session
-            </a> */}
           </div>
         </div>
 
@@ -79,8 +70,8 @@ export default function Home() {
                     className="flex justify-between items-baseline gap-4 hover:opacity-70 transition-opacity no-underline"
                   >
                     <span className="text-sm font-normal">{post.title}</span>
-                    <span className="text-sm text-[#5A5A5A] whitespace-nowrap">
-                      Last updated {new Date(post.date).toLocaleDateString('en-US', {
+                    <span className="text-xs text-[#5A5A5A] whitespace-nowrap">
+                      {new Date(post.date).toLocaleDateString('en-US', {
                         month: 'short',
                         day: 'numeric',
                         year: 'numeric'
