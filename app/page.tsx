@@ -17,15 +17,15 @@ export default function Home() {
           </h1>
 
           <p className="text-sm mb-8 text-[#5A5A5A]">
-            Co-founder and COO at <a href="https://www.wusoolcapital.com" target="_blank" rel="noopener noreferrer" className="link-bold">Wusool Capital</a> — M&A advisory for UAE business owners, supporting them navigate their most important transaction.
+            Co-founder and COO at <a href="https://www.wusoolcapital.com" target="_blank" rel="noopener noreferrer" className="link-bold">Wusool Capital</a>: M&A advisory for UAE business owners, supporting them navigate their most important transaction.
           </p>
           <p className="text-sm mb-8 text-[#5A5A5A]">
-            Co-founder and Partner at <a href="https://www.dopaminecap.com" target="_blank" rel="noopener noreferrer" className="link-bold">Dopamine</a> — investing in consumer companies in the GCC.
+            Co-founder and Partner at <a href="https://www.dopaminecap.com" target="_blank" rel="noopener noreferrer" className="link-bold">Dopamine</a>: investing in consumer companies in the GCC.
           </p>
 
           <div className="space-y-4 mb-10 text-sm leading-relaxed">
             <p>
-              I am Co-founder and COO of Wusool Capital, an M&A advisory firm for business owners in the UAE and GCC. We run full sell-side processes for founders looking to exit businesses valued between $1M and $20M — from preparing for market through buyer outreach, negotiation, and closing. No retainer. We earn when the deal closes.            
+              I am Co-founder and COO of Wusool Capital, an M&A advisory firm for business owners in the UAE and GCC. We run full sell-side processes for founders looking to exit businesses valued between $1M and $20M, from preparing for market through buyer outreach, negotiation, and closing. No retainer. We earn when the deal closes.            
             </p>
             <p>
               My background spans 100+ transactions across the GCC and Africa, including time at Global Ventures advising portfolio founders on M&A and fundraising. I advise on deal preparation, valuation positioning, buyer selection, and negotiation strategy.
