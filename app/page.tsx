@@ -17,15 +17,18 @@ export default function Home() {
           </h1>
 
           <p className="text-sm mb-8 text-[#5A5A5A]">
-            Partner at <a href="https://www.dopaminecap.com" target="_blank" rel="noopener noreferrer" className="link-bold">Dopamine</a> — advising founders through hard problems
+            Co-founder and COO at <a href="https://www.wusoolcapital.com" target="_blank" rel="noopener noreferrer" className="link-bold">Wusool Capital</a> — M&A advisory for UAE business owners, supporting them navigate their most important transaction.
+          </p>
+          <p className="text-sm mb-8 text-[#5A5A5A]">
+            Co-founder and Partner at <a href="https://www.dopaminecap.com" target="_blank" rel="noopener noreferrer" className="link-bold">Dopamine</a> — investing in consumer companies in the GCC.
           </p>
 
           <div className="space-y-4 mb-10 text-sm leading-relaxed">
             <p>
-              I am a Partner at Dopamine, a strategic capital advisory firm for emerging companies. We help founders raise the right capital, from the right investors, on the right terms. We guide them through their transactions. We help them understand fundraising dynamics, build their narrative, avoid irreversible mistakes, and structure deals properly (governance, legal, cap table), while making introductions to relevant investors.
+              I am Co-founder and COO of Wusool Capital, an M&A advisory firm for business owners in the UAE and GCC. We run full sell-side processes for founders looking to exit businesses valued between $1M and $20M — from preparing for market through buyer outreach, negotiation, and closing. No retainer. We earn when the deal closes.            
             </p>
             <p>
-              Before starting Dopamine, I was a Principal at Global Ventures, where I led value creation and the investment process: supporting founders on fundraising, governance, strategy, and scaling across the Middle East and Africa. Earlier, I invested in African tech startups at Outlierz Ventures in Morocco and worked in private equity at AfricInvest Group in Tunisia and Côte d'Ivoire, building expertise in due diligence, business modeling, and financial valuation.
+              My background spans 100+ transactions across the GCC and Africa, including time at Global Ventures advising portfolio founders on M&A and fundraising. I advise on deal preparation, valuation positioning, buyer selection, and negotiation strategy.
             </p>
             <p>
               I studied at HEC Paris (MBA), Bocconi University (MSc), and Warwick Business School (BSc). I'm based in Dubai, UAE.
