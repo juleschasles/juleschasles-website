@@ -1,10 +1,8 @@
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/posts'
-import { getAllBooks } from '@/lib/books'
 
 export default function Home() {
   const posts = getAllPosts().slice(0, 10)
-  const books = getAllBooks().slice(0, 10)
 
   return (
     <main className="home-main">
@@ -18,9 +16,6 @@ export default function Home() {
 
           <p className="text-sm mb-8 text-[#5A5A5A]">
             Co-founder and COO at <a href="https://www.wusoolcapital.com" target="_blank" rel="noopener noreferrer" className="link-bold">Wusool Capital</a>: M&A advisory for UAE business owners, supporting them navigate their most important transaction.
-          </p>
-          <p className="text-sm mb-8 text-[#5A5A5A]">
-            Co-founder and Partner at <a href="https://www.dopaminecap.com" target="_blank" rel="noopener noreferrer" className="link-bold">Dopamine</a>: investing in consumer companies in the GCC.
           </p>
 
           <div className="space-y-4 mb-10 text-sm leading-relaxed">
@@ -52,11 +47,11 @@ export default function Home() {
         <div className="home-right">
 
           {/* Spacer to align with bio */}
-          <div className="text-4xl font-semibold mb-3 invisible" aria-hidden="true">&#8203;</div>
+          <h1 className="text-4xl font-semibold mb-3 invisible" aria-hidden="true">&#8203;</h1>
 
           {/* Thoughts Section */}
           <div className="right-section">
-            <div className="flex items-baseline justify-between mb-64">
+            <div className="flex items-baseline justify-between" style={{ marginBottom: '1.5rem' }}>
               <span className="section-heading">Thoughts</span>
               <Link href="/blog" className="text-xs text-[#5A5A5A] hover:text-[#2A2A2A] no-underline">
                 Read all →
@@ -81,41 +76,6 @@ export default function Home() {
                       })}
                     </span>
                   </Link>
-                ))
-              )}
-            </div>
-          </div>
-
-          {/* Books Section */}
-          <div className="right-section" style={{ marginTop: '3rem' }}>
-            <div className="flex items-baseline justify-between mb-64">
-              <span className="section-heading">Book Recommendations</span>
-              <Link href="/books" className="text-xs text-[#5A5A5A] hover:text-[#2A2A2A] no-underline">
-                See all →
-              </Link>
-            </div>
-            <div className="space-y-2">
-              {books.length === 0 ? (
-                <p className="text-[#5A5A5A] text-sm">No books yet.</p>
-              ) : (
-                books.map((book) => (
-                  book.amazonUrl ? (
-                    <a
-                      key={book.slug}
-                      href={book.amazonUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex justify-between items-baseline gap-4 hover:opacity-70 transition-opacity no-underline"
-                    >
-                      <span className="text-sm font-normal">{book.title}</span>
-                      <span className="text-sm text-[#5A5A5A] whitespace-nowrap">{book.author}</span>
-                    </a>
-                  ) : (
-                    <div key={book.slug} className="flex justify-between items-baseline gap-4">
-                      <span className="text-sm font-normal">{book.title}</span>
-                      <span className="text-sm text-[#5A5A5A] whitespace-nowrap">{book.author}</span>
-                    </div>
-                  )
                 ))
               )}
             </div>
