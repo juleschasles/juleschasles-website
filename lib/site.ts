@@ -31,6 +31,15 @@ export const proof = [
   { value: '20+', label: 'workshops and panels' },
 ]
 
+// One line of context per proof item, same order as proof.
+export const proofContext = [
+  'Deals and transactions across my career in M&A and investing.',
+  'Screened across the GCC and Africa, including at Global Ventures.',
+  'Worked across Seed to Private Equity funds, from $20M to $1B in AUM.',
+  'Led value creation for a 70-company Series A portfolio.',
+  'Workshops and panels across the UAE, with Hub71, in5, NYU Abu Dhabi, Plug and Play and others.',
+]
+
 export const whatIDo = {
   intro:
     'I co-founded Wusool Capital to run full sell-side processes for founders in the UAE and GCC. We work on businesses valued between $1M and $20M.',

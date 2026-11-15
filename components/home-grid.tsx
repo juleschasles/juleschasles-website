@@ -1,11 +1,13 @@
 // Home: grid layout with neumorphic (hardware-style) cards. No scroll on desktop.
 import Image from 'next/image'
 import Link from 'next/link'
-import { person, proof, bio, whatIDo, links } from '@/lib/site'
+import { person, proof, bio, whatIDo, links, proofContext } from '@/lib/site'
+import { Expandable, ExpandButton } from './expandable'
 import { ThemeToggle } from './chrome'
 import type { PostMeta } from '@/lib/posts'
 
 const label = 'font-mono text-[11px] uppercase tracking-wider text-muted'
+const h2 = 'text-3xl font-semibold tracking-[-0.03em] sm:text-5xl'
 
 export default function GridHome({ posts }: { posts: PostMeta[] }) {
   return (
@@ -20,28 +22,59 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
                 <Image src="/jules.png" alt="Jules Chasles" fill priority sizes="(min-width:1024px) 22vw, 45vw" className="object-cover object-top" />
               </div>
             </div>
-            <ul className="neu grid grid-cols-2 content-center gap-2 p-3 sm:gap-4 sm:p-5">
+            <Expandable title="Track record" className="neu relative p-3 sm:p-5" detail={
+              <>
+                <p className={label}>Track record</p>
+                <h2 className={`mt-3 ${h2}`}>Years on the buyer side, in numbers.</h2>
+                <ul className="mt-10 divide-y divide-line border-y border-line">
+                  {proof.map((p, i) => (
+                    <li key={p.label} className="grid gap-1 py-6 sm:grid-cols-[180px_1fr] sm:gap-8">
+                      <span className="text-4xl font-semibold tracking-tight">{p.value}</span>
+                      <div><div className="font-medium">{p.label}</div><p className="mt-1 text-muted">{proofContext[i]}</p></div>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            }>
+            <ul className="grid h-full grid-cols-2 content-center gap-2 sm:gap-4">
               {proof.map((p, i) => (
-                <li key={p.label} className={`neu-in px-2.5 py-2 sm:px-4 sm:py-3 ${i === 4 ? 'col-span-2' : ''}`}>
+                <li key={p.label} className={`neu-in px-2.5 py-2 sm:px-4 sm:py-3 `}>
                   <div className="text-base font-semibold tracking-tight sm:text-2xl">{p.value}</div>
                   <div className="text-[10px] leading-tight text-muted sm:text-xs">{p.label}</div>
                 </li>
               ))}
+              <li className="flex items-center justify-center"><ExpandButton label="track record" /></li>
             </ul>
+            </Expandable>
           </div>
 
           {/* Bio */}
-          <section className="neu flex min-h-0 flex-1 flex-col p-6 sm:p-8">
-            <div className="flex items-center justify-between">
+          <Expandable title="About" className="neu flex min-h-0 flex-1 flex-col p-6 sm:p-8" detail={
+            <>
+              <p className={label}>About</p>
+              <h2 className={`mt-3 ${h2}`}>{person.headline}</h2>
+              <div className="mt-8 space-y-4 text-lg leading-relaxed text-muted">{bio.map((b) => <p key={b}>{b}</p>)}</div>
+              <h3 className="mt-14 text-xl font-semibold">What I do</h3>
+              <p className="mt-3 text-muted">{whatIDo.intro}</p>
+              <ol className="mt-6 grid gap-4 sm:grid-cols-2">
+                {whatIDo.steps.map((st, i) => (
+                  <li key={st.title} className="neu-in p-5"><span className="font-mono text-xs text-signal">0{i + 1}</span><h4 className="mt-2 font-medium">{st.title}</h4><p className="mt-1 text-sm text-muted">{st.body}</p></li>
+                ))}
+              </ol>
+              <p className="mt-6 text-sm text-muted">{whatIDo.fees}</p>
+              <a href={links.dealReadiness} target="_blank" rel="noopener noreferrer" className="neu-btn mt-8 inline-flex h-14 items-center gap-4 pl-6 pr-3 text-sm font-medium">Check your deal readiness <span className="flex h-8 w-8 items-center justify-center rounded-full bg-signal text-white">↗</span></a>
+            </>
+          }>
+            <div className="flex items-center justify-between gap-2">
               <span className={label}><span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-signal align-middle" />{person.name} · {person.location}</span>
-              <ThemeToggle className="neu-btn border-0" />
+              <div className="flex gap-2"><ThemeToggle className="neu-btn border-0" /><ExpandButton label="about" /></div>
             </div>
             <h1 className="mt-5 text-3xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-4xl xl:text-5xl">{person.headline}</h1>
             <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-muted lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:pr-1">
               <p>{whatIDo.intro} {whatIDo.fees}</p>
               {bio.map((b) => <p key={b}>{b}</p>)}
             </div>
-          </section>
+          </Expandable>
 
           {/* Actions */}
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
@@ -58,10 +91,25 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
         </div>
 
         {/* Right column: Thoughts */}
-        <section className="neu flex min-h-0 flex-col p-6 sm:p-8">
+        <Expandable title="Thoughts" className="neu flex min-h-0 flex-col p-6 sm:p-8" detail={
+          <>
+            <p className={label}>Thoughts</p>
+            <h2 className={`mt-3 ${h2}`}>Notes on risk, decisions and simplicity.</h2>
+            <ul className="mt-10 divide-y divide-line border-y border-line">
+              {posts.map((p) => (
+                <li key={p.slug}>
+                  <Link href={`/blog/${p.slug}`} className="group block py-6">
+                    <div className="flex items-baseline justify-between gap-4"><span className="text-xl font-medium group-hover:text-muted">{p.title}</span><span className="shrink-0 font-mono text-xs text-muted">{p.readMins} min</span></div>
+                    <p className="mt-2 text-muted">{p.excerpt}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        }>
           <div className="flex items-center justify-between">
             <span className={label}>Thoughts</span>
-            <Link href="/blog" className={`${label} hover:text-fg`}>All →</Link>
+            <ExpandButton label="thoughts" />
           </div>
           <ul className="mt-5 flex flex-col gap-3 lg:min-h-0 lg:overflow-y-auto lg:pr-1">
             {posts.map((p) => (
@@ -80,7 +128,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
             <Link href="/speaking" className="neu-btn flex h-11 flex-1 items-center justify-center">Speaking</Link>
             <Link href="/scorecard" className="neu-btn flex h-11 flex-1 items-center justify-center">Scorecard</Link>
           </div>
-        </section>
+        </Expandable>
       </div>
     </main>
   )

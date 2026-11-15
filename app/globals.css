@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #f5f5f4;
-  --surface: #ffffff;
-  --surface-2: #ececea;
-  --line: #e2e2df;
+  --bg: #e8e8e6;
+  --surface: #f4f4f2;
+  --surface-2: #dededb;
+  --line: #d6d6d2;
   --fg: #161616;
   --muted: #6b6b68;
   --accent: #161616;
   --accent-fg: #ffffff;
   --signal: #e5432d;
   --shadow-hi: #ffffff;
-  --shadow-lo: #d4d4d0;
+  --shadow-lo: #c6c6c2;
   --font-sans: var(--font-inter), system-ui, sans-serif;
   color-scheme: light;
 }
