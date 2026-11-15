@@ -6,6 +6,8 @@ const utm = 'utm_source=juleschasles.com&utm_medium=website'
 
 export const links = {
   linkedin: 'https://www.linkedin.com/in/jules-chasles/',
+  // [TO CONFIRM] public email address for the site.
+  email: 'TO-CONFIRM@wusoolcapital.com',
   wusool: 'https://www.wusoolcapital.com',
   dealReadiness: `https://www.wusoolcapital.com/deal-readiness-tool?${utm}&utm_campaign=deal_readiness`,
   valuation: `https://www.wusoolcapital.com/valuation-tool?${utm}&utm_campaign=valuation`,

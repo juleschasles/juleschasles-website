@@ -1,119 +1,86 @@
-'use client'
-
-// Direction A: bento grid, no scroll on desktop, cards expand in place.
+// Home: grid layout with neumorphic (hardware-style) cards. No scroll on desktop.
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { person, proof, whatIDo, bio, talks, topics, organizers, links } from '@/lib/site'
+import { person, proof, bio, whatIDo, links } from '@/lib/site'
 import { ThemeToggle } from './chrome'
 import type { PostMeta } from '@/lib/posts'
 
-type Key = 'what' | 'about' | 'speaking' | 'thoughts' | null
-
-function Card({ id, open, setOpen, label, title, className = '', children, detail }: {
-  id: Exclude<Key, null>; open: Key; setOpen: (k: Key) => void; label: string; title: React.ReactNode; className?: string; children?: React.ReactNode; detail: React.ReactNode
-}) {
-  const isOpen = open === id
-  return (
-    <section
-      className={`group relative flex flex-col rounded-2xl border border-line bg-surface p-5 transition-all duration-300 ${isOpen ? 'lg:absolute lg:inset-0 lg:z-10 shadow-xl' : ''} ${open && !isOpen ? 'lg:opacity-30' : ''} ${className}`}
-    >
-      <div className="flex items-start justify-between gap-3">
-        <span className="font-mono text-[11px] uppercase tracking-wider text-muted">{label}</span>
-        <button
-          onClick={() => setOpen(isOpen ? null : id)}
-          aria-expanded={isOpen}
-          aria-label={isOpen ? `Close ${label}` : `Open ${label}`}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line text-muted transition group-hover:text-fg"
-        >
-          <span className={`transition-transform ${isOpen ? 'rotate-45' : ''}`}>+</span>
-        </button>
-      </div>
-      <h2 className="mt-2 text-lg font-medium leading-snug tracking-tight">{title}</h2>
-      {!isOpen && children}
-      <div className={`${isOpen ? 'block' : 'hidden'} mt-4 overflow-y-auto`}>{detail}</div>
-    </section>
-  )
-}
+const label = 'font-mono text-[11px] uppercase tracking-wider text-muted'
 
 export default function GridHome({ posts }: { posts: PostMeta[] }) {
-  const [open, setOpen] = useState<Key>(null)
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(null)
-    addEventListener('keydown', onKey)
-    return () => removeEventListener('keydown', onKey)
-  }, [])
-
   return (
-    <main className="mx-auto max-w-[1400px] p-3 sm:p-4 lg:h-dvh">
-      <div className="relative grid gap-3 lg:h-full lg:grid-cols-12 lg:grid-rows-6">
-        {/* Hero */}
-        <section className="flex flex-col justify-between rounded-2xl border border-line bg-surface p-6 sm:p-8 lg:col-span-6 lg:row-span-4">
+    <main className="mx-auto max-w-[1400px] p-4 sm:p-6 lg:h-dvh lg:overflow-hidden">
+      <div className="grid gap-4 sm:gap-5 lg:h-full lg:grid-cols-[1.35fr_1fr]">
+        {/* Left column */}
+        <div className="flex min-h-0 flex-col gap-4 sm:gap-5">
+          {/* Photo + facts */}
+          <div className="grid grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] gap-4 sm:gap-5">
+            <div className="neu relative aspect-[4/5] overflow-hidden p-2">
+              <div className="relative h-full w-full overflow-hidden rounded-2xl bg-surface-2">
+                <Image src="/jules.png" alt="Jules Chasles" fill priority sizes="(min-width:1024px) 22vw, 45vw" className="object-cover object-top" />
+              </div>
+            </div>
+            <ul className="neu grid grid-cols-2 content-center gap-2 p-3 sm:gap-4 sm:p-5">
+              {proof.map((p, i) => (
+                <li key={p.label} className={`neu-in px-2.5 py-2 sm:px-4 sm:py-3 ${i === 4 ? 'col-span-2' : ''}`}>
+                  <div className="text-base font-semibold tracking-tight sm:text-2xl">{p.value}</div>
+                  <div className="text-[10px] leading-tight text-muted sm:text-xs">{p.label}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Bio */}
+          <section className="neu flex min-h-0 flex-1 flex-col p-6 sm:p-8">
+            <div className="flex items-center justify-between">
+              <span className={label}><span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-signal align-middle" />{person.name} · {person.location}</span>
+              <ThemeToggle className="neu-btn border-0" />
+            </div>
+            <h1 className="mt-5 text-3xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-4xl xl:text-5xl">{person.headline}</h1>
+            <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-muted lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:pr-1">
+              <p>{whatIDo.intro} {whatIDo.fees}</p>
+              {bio.map((b) => <p key={b}>{b}</p>)}
+            </div>
+          </section>
+
+          {/* Actions */}
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+            <a href={links.dealReadiness} target="_blank" rel="noopener noreferrer" className="neu-btn flex h-14 items-center justify-between pl-6 pr-3 text-sm font-medium">
+              Deal readiness <span className="flex h-8 w-8 items-center justify-center rounded-full bg-signal text-white">↗</span>
+            </a>
+            <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className="neu-btn flex h-14 items-center justify-between pl-6 pr-3 text-sm font-medium">
+              LinkedIn <span className="neu-in flex h-8 w-8 items-center justify-center rounded-full">↗</span>
+            </a>
+            <a href={`mailto:${links.email}`} className="neu-btn flex h-14 items-center justify-between pl-6 pr-3 text-sm font-medium">
+              Email <span className="neu-in flex h-8 w-8 items-center justify-center rounded-full">@</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Right column: Thoughts */}
+        <section className="neu flex min-h-0 flex-col p-6 sm:p-8">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold">{person.name}</span>
-            <ThemeToggle />
+            <span className={label}>Thoughts</span>
+            <Link href="/blog" className={`${label} hover:text-fg`}>All →</Link>
           </div>
-          <div className="mt-16 lg:mt-0">
-            <p className="font-mono text-[11px] uppercase tracking-wider text-muted">{person.role}</p>
-            <h1 className="mt-3 text-[2.1rem] font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl xl:text-6xl">{person.headline}</h1>
-            <p className="mt-4 max-w-md text-muted">{person.sub} {person.short}</p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              <a href={links.dealReadiness} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center rounded-full bg-accent px-5 text-sm font-medium text-accent-fg hover:opacity-90">Check your deal readiness ↗</a>
-              <a href={links.contact} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center rounded-full border border-line px-5 text-sm font-medium hover:bg-surface-2">Talk to Jules</a>
-            </div>
+          <ul className="mt-5 flex flex-col gap-3 lg:min-h-0 lg:overflow-y-auto lg:pr-1">
+            {posts.map((p) => (
+              <li key={p.slug}>
+                <Link href={`/blog/${p.slug}`} className="neu-in group block px-5 py-4 transition">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="font-medium group-hover:text-muted">{p.title}</span>
+                    <span className="shrink-0 font-mono text-[11px] text-muted">{p.readMins} min</span>
+                  </div>
+                  <p className="mt-1 line-clamp-2 text-sm text-muted">{p.excerpt}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-5 flex gap-3 pt-1 text-sm">
+            <Link href="/speaking" className="neu-btn flex h-11 flex-1 items-center justify-center">Speaking</Link>
+            <Link href="/scorecard" className="neu-btn flex h-11 flex-1 items-center justify-center">Scorecard</Link>
           </div>
         </section>
-
-        {/* Photo */}
-        <section className="relative overflow-hidden rounded-2xl border border-line bg-surface-2 aspect-square lg:aspect-auto lg:col-span-3 lg:row-span-4">
-          <Image src="/jules.png" alt="Jules Chasles" fill priority sizes="(min-width:1024px) 25vw, 100vw" className="object-cover object-top grayscale" />
-          <span className="absolute bottom-3 left-3 rounded-full bg-surface/90 px-3 py-1 font-mono text-[11px] uppercase tracking-wider">{person.location}</span>
-        </section>
-
-        {/* Proof */}
-        <section className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line lg:col-span-3 lg:row-span-4 lg:grid-cols-1">
-          {proof.map((p, i) => (
-            <div key={p.label} className={`flex flex-col justify-center bg-surface px-5 py-4 ${i === 4 ? 'col-span-2 lg:col-span-1' : ''}`}>
-              <span className="text-2xl font-semibold tracking-tight">{p.value}</span>
-              <span className="text-xs text-muted">{p.label}</span>
-            </div>
-          ))}
-        </section>
-
-        <Card id="what" open={open} setOpen={setOpen} label="What I do" title="Full sell-side process, from preparation to close." className="lg:col-span-3 lg:row-span-2"
-          detail={<div className="max-w-2xl space-y-5">
-            <p className="text-muted">{whatIDo.intro}</p>
-            <ol className="grid gap-3 sm:grid-cols-2">{whatIDo.steps.map((s, i) => (
-              <li key={s.title} className="rounded-xl border border-line p-4"><span className="font-mono text-xs text-muted">0{i + 1}</span><h3 className="mt-1 font-medium">{s.title}</h3><p className="mt-1 text-sm text-muted">{s.body}</p></li>))}
-            </ol>
-            <p className="text-sm text-muted">{whatIDo.fees}</p>
-            <a href={links.dealReadiness} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center rounded-full bg-accent px-5 text-sm font-medium text-accent-fg">Check your deal readiness ↗</a>
-          </div>}
-        />
-
-        <Card id="about" open={open} setOpen={setOpen} label="About" title="I spent years as the buyer." className="lg:col-span-3 lg:row-span-2"
-          detail={<div className="max-w-2xl space-y-4 text-muted">{bio.map((b) => <p key={b}>{b}</p>)}
-            <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className="inline-block text-fg underline underline-offset-4">LinkedIn ↗</a></div>}
-        />
-
-        <Card id="speaking" open={open} setOpen={setOpen} label="Speaking" title="Workshops and panels on selling and valuing a business." className="lg:col-span-3 lg:row-span-2"
-          detail={<div className="space-y-6">
-            <ul className="flex flex-wrap gap-2">{organizers.map((o) => <li key={o} className="rounded-full border border-line px-3 py-1 text-xs">{o}</li>)}</ul>
-            <div className="grid gap-3 md:grid-cols-3">{talks.map((t) => (
-              <div key={t.title} className="rounded-xl border border-line p-4"><h3 className="font-medium">{t.title}</h3><p className="mt-1 text-sm text-muted">{t.blurb}</p></div>))}</div>
-            <p className="text-sm text-muted">Topics: {topics.join(' · ')}</p>
-            <div className="flex gap-2"><a href={links.speaking} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center rounded-full bg-accent px-5 text-sm font-medium text-accent-fg">Book Jules to speak</a>
-              <Link href="/speaking" className="inline-flex h-11 items-center rounded-full border border-line px-5 text-sm">Speaking page</Link></div>
-          </div>}
-        />
-
-        <Card id="thoughts" open={open} setOpen={setOpen} label="Thoughts" title={posts[0]?.title ?? 'Notes on decisions'} className="lg:col-span-3 lg:row-span-2"
-          detail={<ul className="max-w-2xl divide-y divide-line">{posts.map((p) => (
-            <li key={p.slug}><Link href={`/blog/${p.slug}`} className="flex items-baseline justify-between gap-4 py-3 hover:text-muted"><span>{p.title}</span><span className="font-mono text-xs text-muted">{p.readMins} min</span></Link></li>))}
-            <li className="pt-3"><Link href="/blog" className="text-sm underline underline-offset-4">All thoughts</Link></li></ul>}
-        >
-          <p className="mt-1 text-sm text-muted">{posts.length} essays on risk, decisions and simplicity.</p>
-        </Card>
       </div>
     </main>
   )
