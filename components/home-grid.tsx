@@ -10,29 +10,29 @@ const h2 = 'text-3xl font-light tracking-[-0.02em] sm:text-5xl'
 
 export default function GridHome({ posts }: { posts: PostMeta[] }) {
   return (
-    <main className="mx-auto max-w-[1400px] p-4 sm:p-6 lg:h-dvh lg:overflow-hidden">
-      <div className="grid gap-4 sm:gap-5 lg:h-full lg:grid-cols-[1.35fr_1fr]">
+    <main className="mx-auto max-w-[1400px] p-3 sm:p-4 lg:h-dvh lg:overflow-hidden">
+      <div className="grid gap-3 sm:gap-4 lg:h-full lg:grid-cols-[1.35fr_1fr]">
         {/* Left column */}
-        <div className="flex min-h-0 flex-col gap-4 sm:gap-5">
+        <div className="flex min-h-0 flex-col gap-3 sm:gap-4">
           {/* Row 1: photo + name + hero */}
-          <div className="key flex items-center gap-4 p-3 sm:gap-6 sm:p-4">
-            <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-[8px] bg-surface-2 sm:w-36 xl:w-40">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/jules.png" alt="Jules Chasles" width={320} height={320} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-top" />
-            </div>
-            <div className="min-w-0 flex-1 py-1 pr-1">
-              <div className="flex items-center justify-between gap-2">
-                <span className={label}><span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-signal align-middle" />{person.name} · {person.location}</span>
-                <ThemeToggle className="key-btn shrink-0" />
+          <div className="flex gap-3 sm:gap-4">
+            <div className="key relative aspect-square w-28 shrink-0 overflow-hidden p-1.5 sm:w-40 xl:w-44">
+              <div className="relative h-full w-full overflow-hidden rounded-[8px] bg-surface-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/jules.png" alt="Jules Chasles" width={352} height={352} fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-top" />
               </div>
-              <h1 className="mt-2 text-xl font-light leading-[1.1] tracking-[-0.02em] sm:mt-3 sm:text-3xl xl:text-[42px]">{person.headline}</h1>
+            </div>
+            <div className="key relative flex min-w-0 flex-1 flex-col justify-center px-4 py-3 sm:px-5">
+              <ThemeToggle className="key-btn absolute right-3 top-3" />
+              <span className={`${label} flex items-center pr-10`}><span className="mr-2 h-1.5 w-1.5 shrink-0 rounded-full bg-signal" />{person.name} · {person.location}</span>
+              <h1 className="mt-2 text-xl font-light leading-[1.1] tracking-[-0.02em] sm:text-3xl xl:text-[40px]">{person.headline}</h1>
             </div>
           </div>
 
           {/* Row 2: metrics */}
-          <ul className="key grid grid-cols-3 gap-2 p-3 sm:grid-cols-5 sm:gap-3 sm:p-4">
+          <ul className="key grid grid-cols-3 gap-1.5 p-1.5 sm:grid-cols-5 sm:gap-2 sm:p-2">
             {proof.map((p) => (
-              <li key={p.label} className="key-in px-2.5 py-2 sm:px-3 sm:py-3">
+              <li key={p.label} className="key-in px-2.5 py-2 sm:px-3 sm:py-2.5">
                 <div className="text-base font-normal tracking-tight sm:text-xl xl:text-2xl">{p.value}</div>
                 <div className="text-[10px] leading-tight text-muted sm:text-xs">{p.label}</div>
               </li>
@@ -41,7 +41,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
 
 
           {/* Row 3: bio, scrolls inside the card */}
-          <Expandable title="About" className="key flex min-h-0 flex-1 flex-col p-6 sm:p-8" detail={
+          <Expandable title="About" className="key flex min-h-0 flex-1 flex-col p-4 sm:p-5" detail={
             <>
               <p className={label}>About</p>
               <h2 className={`mt-3 ${h2}`}>{person.headline}</h2>
@@ -61,7 +61,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
               <span className={label}>About</span>
               <ExpandButton label="about" />
             </div>
-            <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-muted lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:pr-2">
+            <div className="mt-3 space-y-3 text-[15px] leading-relaxed text-muted lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:pr-2">
               <p>{whatIDo.intro} {whatIDo.fees}</p>
               {bio.map((b) => <p key={b}>{b}</p>)}
             </div>
@@ -69,20 +69,20 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
 
           {/* Row 4: actions */}
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
-            <a href={links.dealReadiness} target="_blank" rel="noopener noreferrer" className="key-btn flex h-14 items-center justify-between pl-6 pr-3 text-sm font-medium">
+            <a href={links.dealReadiness} target="_blank" rel="noopener noreferrer" className="key-btn flex h-12 items-center justify-between pl-5 pr-2 text-sm font-medium">
               Deal readiness <span className="flex h-8 w-8 items-center justify-center rounded-full bg-signal text-white">↗</span>
             </a>
-            <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className="key-btn flex h-14 items-center justify-between pl-6 pr-3 text-sm font-medium">
+            <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className="key-btn flex h-12 items-center justify-between pl-5 pr-2 text-sm font-medium">
               LinkedIn <span className="key-in flex h-8 w-8 items-center justify-center rounded-full">↗</span>
             </a>
-            <a href={`mailto:${links.email}`} className="key-btn flex h-14 items-center justify-between pl-6 pr-3 text-sm font-medium">
+            <a href={`mailto:${links.email}`} className="key-btn flex h-12 items-center justify-between pl-5 pr-2 text-sm font-medium">
               Email <span className="key-in flex h-8 w-8 items-center justify-center rounded-full">@</span>
             </a>
           </div>
         </div>
 
         {/* Right column: Thoughts */}
-        <Expandable title="Thoughts" className="key flex min-h-0 flex-col p-6 sm:p-8" detail={
+        <Expandable title="Thoughts" className="key flex min-h-0 flex-col p-4 sm:p-5" detail={
           <>
             <p className={label}>Thoughts</p>
             <h2 className={`mt-3 ${h2}`}>Notes on risk, decisions and simplicity.</h2>
@@ -102,10 +102,10 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
             <span className={label}>Thoughts</span>
             <ExpandButton label="thoughts" />
           </div>
-          <ul className="mt-5 flex flex-col gap-3 lg:min-h-0 lg:overflow-y-auto lg:pr-1">
+          <ul className="mt-3 flex flex-col gap-2 lg:min-h-0 lg:overflow-y-auto lg:pr-1">
             {posts.map((p) => (
               <li key={p.slug}>
-                <Link href={`/blog/${p.slug}`} className="key-in group block px-5 py-4 transition">
+                <Link href={`/blog/${p.slug}`} className="key-in group block px-4 py-3 transition">
                   <div className="flex items-baseline justify-between gap-3">
                     <span className="font-medium group-hover:text-muted">{p.title}</span>
                     <span className="shrink-0 text-xs text-muted">{p.readMins} min</span>
