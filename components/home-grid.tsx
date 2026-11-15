@@ -124,10 +124,6 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
               </li>
             ))}
           </ul>
-          <div className="mt-5 flex gap-3 pt-1 text-sm">
-            <Link href="/speaking" className="neu-btn flex h-11 flex-1 items-center justify-center">Speaking</Link>
-            <Link href="/scorecard" className="neu-btn flex h-11 flex-1 items-center justify-center">Scorecard</Link>
-          </div>
         </Expandable>
       </div>
     </main>
