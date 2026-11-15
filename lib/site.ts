@@ -52,9 +52,9 @@ export const bio = [
 export const organizers = ['Hub71', 'in5', 'Plug and Play', 'NYU Abu Dhabi', 'Khalifa University', 'IFZA', 'Finanshels', 'CrossVal']
 
 export const talks = [
-  { title: 'How to Sell Your Startup', blurb: 'What buyers check first, how a sale process runs, and the reasonable decisions that cost founders value.', where: '[TO CONFIRM: organizer and year]' },
-  { title: 'How to Value Your Business', blurb: 'How buyers build a price, what they discount, and how to prepare the numbers before they ask.', where: '[TO CONFIRM: organizer and year]' },
-  { title: 'Oraseya Sandbox: Prepare for a Raise and an M&A Process', blurb: 'The overlap between fundraising readiness and exit readiness, for founders who want options.', where: '[TO CONFIRM: organizer and year]' },
+  { title: 'How to Sell Your Startup', blurb: 'What buyers check first, how a sale process runs, and the reasonable decisions that cost founders value.' },
+  { title: 'How to Value Your Business', blurb: 'How buyers build a price, what they discount, and how to prepare the numbers before they ask.' },
+  { title: 'Oraseya Sandbox: Prepare for a Raise and an M&A Process', blurb: 'The overlap between fundraising readiness and exit readiness, for founders who want options.' },
 ]
 
 export const topics = [
@@ -70,5 +70,5 @@ export const nav = [
   { href: '/', label: 'Home' },
   { href: '/speaking', label: 'Speaking' },
   { href: '/blog', label: 'Thoughts' },
-  { href: '/scorecard', label: 'Scorecard' },
+  { href: links.dealReadiness, label: 'Scorecard', external: true },
 ]

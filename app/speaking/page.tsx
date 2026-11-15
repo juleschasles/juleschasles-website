@@ -32,7 +32,6 @@ export default function Speaking() {
               <span className="font-mono text-xs text-muted">0{i + 1}</span>
               <h3 className="mt-3 text-lg font-medium leading-snug">{t.title}</h3>
               <p className="mt-2 text-sm text-muted">{t.blurb}</p>
-              <p className="mt-auto pt-6 font-mono text-[11px] text-muted">{t.where}</p>
             </article>
           ))}
         </div>

@@ -33,9 +33,14 @@ export function Header() {
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="whitespace-nowrap text-sm font-semibold tracking-tight">{person.name}</Link>
         <nav className="flex items-center text-sm sm:gap-1">
-          {nav.slice(1).map((n) => (
-            <Link key={n.href} href={n.href} className={`rounded-full px-2 py-1.5 transition sm:px-3 ${n.href === '/scorecard' ? 'hidden sm:inline' : ''} ${path.startsWith(n.href) ? 'text-fg' : 'text-muted hover:text-fg'}`}>{n.label}</Link>
-          ))}
+          {nav.slice(1).map((n) => {
+            const cls = `rounded-full px-2 py-1.5 transition sm:px-3 ${n.external ? 'hidden sm:inline' : ''} ${!n.external && path.startsWith(n.href) ? 'text-fg' : 'text-muted hover:text-fg'}`
+            return n.external ? (
+              <a key={n.href} href={n.href} target="_blank" rel="noopener noreferrer" className={cls}>{n.label} ↗</a>
+            ) : (
+              <Link key={n.href} href={n.href} className={cls}>{n.label}</Link>
+            )
+          })}
           <ThemeToggle className="ml-1" />
         </nav>
       </div>
