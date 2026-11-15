@@ -20,10 +20,10 @@ export default function Home() {
 
           <div className="space-y-4 mb-10 text-sm leading-relaxed">
             <p>
-              I am Co-founder and COO of Wusool Capital, an M&A advisory firm for business owners in the UAE and GCC. We run full sell-side processes for founders looking to exit businesses valued between $1M and $20M, from preparing for market through buyer outreach, negotiation, and closing. No retainer. We earn when the deal closes.            
+              I am Co-founder and COO of Wusool Capital, an M&A advisory firm for business owners in the UAE and GCC. We run full sell-side processes for founders looking to exit businesses valued between $1M and $20M, from preparing for market through buyer outreach, negotiation, and closing. We work on a retainer plus success fee, so most of our reward comes when the deal closes.            
             </p>
             <p>
-              My background spans 100+ transactions across the GCC and Africa, including time at Global Ventures advising portfolio founders on M&A and fundraising. I advise on deal preparation, valuation positioning, buyer selection, and negotiation strategy.
+              My background spans 50+ deals and transactions and 1,000+ companies screened across the GCC and Africa, including time at Global Ventures advising portfolio founders on M&A and fundraising. I advise on deal preparation, valuation positioning, buyer selection, and negotiation strategy.
             </p>
             <p>
               I studied at HEC Paris (MBA), Bocconi University (MSc), and Warwick Business School (BSc). I'm based in Dubai, UAE.

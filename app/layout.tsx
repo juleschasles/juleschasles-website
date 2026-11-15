@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Jules Chasles",
-  description: "Partner at Dopamine, working with emerging companies in MENA",
+  description: "Co-founder and COO of Wusool Capital. Sell-side M&A advisor for GCC founders selling $1M-$20M businesses.",
 };
 
 export default function RootLayout({
