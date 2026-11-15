@@ -25,7 +25,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
             <div className="key relative flex min-w-0 flex-1 flex-col justify-center px-4 py-3 sm:px-5">
               <ThemeToggle className="key-btn absolute right-3 top-3" />
               <span className={`${label} flex items-center pr-10`}><span className="mr-2 h-1.5 w-1.5 shrink-0 rounded-full bg-signal" />{person.name} · {person.location}</span>
-              <h1 className="mt-2 text-xl font-light leading-[1.1] tracking-[-0.02em] sm:text-3xl xl:text-[40px]">{person.headline}</h1>
+              <h1 className="mt-2 text-xl font-semibold leading-[1.1] tracking-[-0.02em] sm:text-3xl xl:text-[40px]">{person.headline}</h1>
             </div>
           </div>
 
@@ -44,7 +44,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
           <Expandable title="About" className="key flex min-h-0 flex-1 flex-col p-4 sm:p-5" detail={
             <>
               <p className={label}>About</p>
-              <h2 className={`mt-3 ${h2}`}>{person.headline}</h2>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.02em] sm:text-5xl">{person.headline}</h2>
               <div className="mt-8 space-y-4 text-lg leading-relaxed text-muted">{bio.map((b) => <p key={b}>{b}</p>)}</div>
               <h3 className="mt-14 text-xl font-semibold">What I do</h3>
               <p className="mt-3 text-muted">{whatIDo.intro}</p>
