@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { nav, links, person, actions } from '@/lib/site'
+import { nav, links, person, contactActions, leadMagnetActions } from '@/lib/site'
+import type { ReactNode } from 'react'
 
 export function ThemeToggle({ className = '' }: { className?: string }) {
   const [dark, setDark] = useState<boolean | null>(null)
@@ -43,21 +44,35 @@ export function Header() {
   )
 }
 
-// The same six CTAs shown on the homepage, as a single row for every other page.
+type Action = (typeof contactActions)[number]
+
+export function ActionButton({ a }: { a: Action }) {
+  const content: ReactNode = (
+    <>
+      {a.label} <span className="key-in flex h-8 w-8 shrink-0 items-center justify-center rounded-full">{a.icon}</span>
+    </>
+  )
+  const cls = 'key-btn flex h-12 items-center justify-between pl-5 pr-2 text-sm font-medium'
+  if (a.kind === 'link') return <Link href={a.href} className={cls}>{content}</Link>
+  if (a.kind === 'mail') return <a href={a.href} className={cls}>{content}</a>
+  return <a href={a.href} target="_blank" rel="noopener noreferrer" className={cls}>{content}</a>
+}
+
+function ActionButtonRow({ items }: { items: Action[] }) {
+  return (
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+      {items.map((a) => <ActionButton key={a.label} a={a} />)}
+    </div>
+  )
+}
+
+// The same six CTAs shown on the homepage, grouped the same way on every
+// other page: contact first, lead magnets below.
 export function ActionRow() {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-      {actions.map((a) => {
-        const content = (
-          <>
-            {a.label} <span className="key-in flex h-7 w-7 shrink-0 items-center justify-center rounded-full">{a.icon}</span>
-          </>
-        )
-        const cls = 'key-btn flex h-12 items-center justify-between pl-4 pr-2 text-sm font-medium'
-        if (a.kind === 'link') return <Link key={a.label} href={a.href} className={cls}>{content}</Link>
-        if (a.kind === 'mail') return <a key={a.label} href={a.href} className={cls}>{content}</a>
-        return <a key={a.label} href={a.href} target="_blank" rel="noopener noreferrer" className={cls}>{content}</a>
-      })}
+    <div className="flex flex-col gap-3">
+      <ActionButtonRow items={contactActions} />
+      <ActionButtonRow items={leadMagnetActions} />
     </div>
   )
 }

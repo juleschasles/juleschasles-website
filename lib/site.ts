@@ -15,17 +15,25 @@ export const links = {
   speaking: 'mailto:jules@wusoolcapital.com?subject=Speaking%20request',
 }
 
-// The six core CTAs, used as a 3+3 split on the homepage and as a single
-// row of six on every other page. kind decides how each one is rendered:
-// 'external' -> new tab, 'mail' -> mailto (same tab), 'link' -> internal route.
-export const actions: { label: string; href: string; kind: 'external' | 'mail' | 'link'; icon: string }[] = [
-  { label: 'Deal readiness', href: links.dealReadiness, kind: 'external', icon: '↗' },
+// The six core CTAs, grouped into two rows everywhere they appear: contact
+// first, lead magnets (the Wusool Capital tools) below. kind decides how
+// each one is rendered: 'external' -> new tab, 'mail' -> mailto (same tab),
+// 'link' -> internal route.
+type Action = { label: string; href: string; kind: 'external' | 'mail' | 'link'; icon: string }
+
+export const contactActions: Action[] = [
   { label: 'LinkedIn', href: links.linkedin, kind: 'external', icon: '↗' },
   { label: 'Email', href: `mailto:${links.email}`, kind: 'mail', icon: '@' },
-  { label: 'Valuation tool', href: links.valuation, kind: 'external', icon: '↗' },
   { label: 'Speaker', href: '/speaking', kind: 'link', icon: '↗' },
+]
+
+export const leadMagnetActions: Action[] = [
+  { label: 'Deal readiness', href: links.dealReadiness, kind: 'external', icon: '↗' },
+  { label: 'Valuation tool', href: links.valuation, kind: 'external', icon: '↗' },
   { label: 'Benchmark', href: links.benchmark, kind: 'external', icon: '↗' },
 ]
+
+export const actions: Action[] = [...contactActions, ...leadMagnetActions]
 
 export const person = {
   name: 'Jules Chasles',

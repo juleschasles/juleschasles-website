@@ -2,25 +2,13 @@
 
 // Home: grid layout, device-style cards on Brand Book tokens. No scroll on desktop.
 import Link from 'next/link'
-import { person, proof, bio, whatIDo, links, actions, organizers, talks, topics } from '@/lib/site'
+import { person, proof, bio, whatIDo, links, contactActions, leadMagnetActions, organizers, talks, topics } from '@/lib/site'
 import { Expandable, ExpandButton, useOpen } from './expandable'
-import { ThemeToggle } from './chrome'
+import { ThemeToggle, ActionButton } from './chrome'
 import type { PostMeta } from '@/lib/posts'
 
 const label = 'label'
 const h2 = 'text-3xl font-light tracking-[-0.02em] sm:text-5xl'
-
-function ActionButton({ a }: { a: (typeof actions)[number] }) {
-  const content = (
-    <>
-      {a.label} <span className="key-in flex h-8 w-8 shrink-0 items-center justify-center rounded-full">{a.icon}</span>
-    </>
-  )
-  const cls = 'key-btn flex h-12 items-center justify-between pl-5 pr-2 text-sm font-medium'
-  if (a.kind === 'link') return <Link href={a.href} className={cls}>{content}</Link>
-  if (a.kind === 'mail') return <a href={a.href} className={cls}>{content}</a>
-  return <a href={a.href} target="_blank" rel="noopener noreferrer" className={cls}>{content}</a>
-}
 
 // The whole metric tile opens the Speaking card; a small arrow hints it's expandable.
 function SpeakingTile({ value, tileLabel }: { value: string; tileLabel: string }) {
@@ -124,9 +112,12 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
             </div>
           </Expandable>
 
-          {/* Row 4: actions (first three of the six site-wide CTAs) */}
+          {/* Row 4: actions, contact first, lead magnets below */}
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
-            {actions.slice(0, 3).map((a) => <ActionButton key={a.label} a={a} />)}
+            {contactActions.map((a) => <ActionButton key={a.label} a={a} />)}
+          </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+            {leadMagnetActions.map((a) => <ActionButton key={a.label} a={a} />)}
           </div>
         </div>
 
@@ -164,10 +155,6 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
               </li>
             ))}
           </ul>
-          {/* The other three of the six site-wide CTAs */}
-          <div className="mt-3 grid grid-cols-1 gap-2 pt-1 sm:grid-cols-3 lg:mt-3 lg:shrink-0">
-            {actions.slice(3, 6).map((a) => <ActionButton key={a.label} a={a} />)}
-          </div>
         </Expandable>
       </div>
     </main>
