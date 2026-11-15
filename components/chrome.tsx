@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { nav, links, person } from '@/lib/site'
+import { nav, links, person, actions } from '@/lib/site'
 
 export function ThemeToggle({ className = '' }: { className?: string }) {
   const [dark, setDark] = useState<boolean | null>(null)
@@ -33,14 +33,9 @@ export function Header() {
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="whitespace-nowrap text-sm font-semibold tracking-tight">{person.name}</Link>
         <nav className="flex items-center text-sm sm:gap-1">
-          {nav.slice(1).map((n) => {
-            const cls = `rounded-full px-2 py-1.5 transition sm:px-3 ${n.external ? 'hidden sm:inline' : ''} ${!n.external && path.startsWith(n.href) ? 'text-fg' : 'text-muted hover:text-fg'}`
-            return n.external ? (
-              <a key={n.href} href={n.href} target="_blank" rel="noopener noreferrer" className={cls}>{n.label} ↗</a>
-            ) : (
-              <Link key={n.href} href={n.href} className={cls}>{n.label}</Link>
-            )
-          })}
+          {nav.slice(1).map((n) => (
+            <Link key={n.href} href={n.href} className={`rounded-full px-2 py-1.5 transition sm:px-3 ${path.startsWith(n.href) ? 'text-fg' : 'text-muted hover:text-fg'}`}>{n.label}</Link>
+          ))}
           <ThemeToggle className="ml-1" />
         </nav>
       </div>
@@ -48,13 +43,32 @@ export function Header() {
   )
 }
 
+// The same six CTAs shown on the homepage, as a single row for every other page.
+export function ActionRow() {
+  return (
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+      {actions.map((a) => {
+        const content = (
+          <>
+            {a.label} <span className="key-in flex h-7 w-7 shrink-0 items-center justify-center rounded-full">{a.icon}</span>
+          </>
+        )
+        const cls = 'key-btn flex h-12 items-center justify-between pl-4 pr-2 text-sm font-medium'
+        if (a.kind === 'link') return <Link key={a.label} href={a.href} className={cls}>{content}</Link>
+        if (a.kind === 'mail') return <a key={a.label} href={a.href} className={cls}>{content}</a>
+        return <a key={a.label} href={a.href} target="_blank" rel="noopener noreferrer" className={cls}>{content}</a>
+      })}
+    </div>
+  )
+}
+
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-line">
-      <div className="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
-        <p>{person.name}. {person.role}. {person.location}.</p>
-        <div className="flex gap-5">
-          <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-fg">LinkedIn ↗</a>
+    <footer className="mt-16 border-t border-line">
+      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+        <ActionRow />
+        <div className="mt-8 flex flex-col gap-4 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>{person.name}. {person.role}. {person.location}.</p>
           <a href={links.wusool} target="_blank" rel="noopener noreferrer" className="hover:text-fg">Wusool Capital ↗</a>
         </div>
       </div>
@@ -72,13 +86,10 @@ export function Page({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function Button({ href, children, primary = false, external = true }: { href: string; children: React.ReactNode; primary?: boolean; external?: boolean }) {
-  const cls = primary
-    ? 'bg-accent text-accent-fg hover:opacity-90'
-    : 'border border-line text-fg hover:bg-surface-2'
+export function Button({ href, children, external = true }: { href: string; children: React.ReactNode; primary?: boolean; external?: boolean }) {
   const ext = external ? { target: '_blank', rel: 'noopener noreferrer' } : {}
   return (
-    <a href={href} {...ext} className={`inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium transition ${cls}`}>
+    <a href={href} {...ext} className="key-btn inline-flex h-11 items-center justify-center gap-2 px-5 text-sm font-medium">
       {children}
     </a>
   )

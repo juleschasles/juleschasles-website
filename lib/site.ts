@@ -10,9 +10,22 @@ export const links = {
   wusool: 'https://www.wusoolcapital.com',
   dealReadiness: `https://www.wusoolcapital.com/deal-readiness-tool?${utm}&utm_campaign=deal_readiness`,
   valuation: `https://www.wusoolcapital.com/valuation-tool?${utm}&utm_campaign=valuation`,
+  benchmark: `https://www.wusoolcapital.com/benchmark?${utm}&utm_campaign=benchmark`,
   contact: 'mailto:jules@wusoolcapital.com',
   speaking: 'mailto:jules@wusoolcapital.com?subject=Speaking%20request',
 }
+
+// The six core CTAs, used as a 3+3 split on the homepage and as a single
+// row of six on every other page. kind decides how each one is rendered:
+// 'external' -> new tab, 'mail' -> mailto (same tab), 'link' -> internal route.
+export const actions: { label: string; href: string; kind: 'external' | 'mail' | 'link'; icon: string }[] = [
+  { label: 'Deal readiness', href: links.dealReadiness, kind: 'external', icon: '↗' },
+  { label: 'LinkedIn', href: links.linkedin, kind: 'external', icon: '↗' },
+  { label: 'Email', href: `mailto:${links.email}`, kind: 'mail', icon: '@' },
+  { label: 'Valuation tool', href: links.valuation, kind: 'external', icon: '↗' },
+  { label: 'Speaker', href: '/speaking', kind: 'link', icon: '↗' },
+  { label: 'Benchmark', href: links.benchmark, kind: 'external', icon: '↗' },
+]
 
 export const person = {
   name: 'Jules Chasles',
@@ -68,7 +81,5 @@ export const topics = [
 
 export const nav = [
   { href: '/', label: 'Home' },
-  { href: '/speaking', label: 'Speaking' },
   { href: '/blog', label: 'Thoughts' },
-  { href: links.dealReadiness, label: 'Scorecard', external: true },
 ]
