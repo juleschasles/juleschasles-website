@@ -1,47 +1,38 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getAllPosts } from '@/lib/posts'
+import { Page } from '@/components/chrome'
+import { getAllPostMeta } from '@/lib/posts'
+
+export const metadata: Metadata = {
+  title: 'Thoughts',
+  description: 'Short essays by Jules Chasles on risk, decisions and simplicity.',
+  alternates: { canonical: '/blog' },
+}
+
+const fmt = (d: string) => new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 
 export default function BlogPage() {
-  const posts = getAllPosts()
-
+  const posts = getAllPostMeta()
   return (
-    <main className="min-h-screen" style={{ padding: '5% 5% 5% 5%' }}>
-      <div style={{ maxWidth: '65ch' }}>
-        <div className="text-sm mb-8 fixed-nav">
-          <Link href="/" className="no-underline hover:opacity-70 transition-opacity">
-            ← Home
-          </Link>
-        </div>
-
-        <h1 className="text-4xl font-semibold mb-8">Thoughts</h1>
-
-        <p className="text-sm text-[#5A5A5A] mb-8 leading-relaxed">
-          These thoughts are drawn from reading, experience, and conversation. Ideas are rarely wholly new, but rather refinements of what came before. These thoughts are just my attempts to understand foundational ideas better and pass them forward with more clarity. They'll evolve as my understanding deepens.
-        </p>
-
-        {posts.length === 0 ? (
-          <p className="text-[#5A5A5A] text-sm">No posts yet. Coming soon.</p>
-        ) : (
-          <div className="space-y-2">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="flex justify-between items-baseline gap-4 hover:opacity-70 transition-opacity no-underline"
-              >
-                <span className="text-sm font-normal font-semibold">{post.title}</span>
-                <span className="text-sm text-[#5A5A5A] whitespace-nowrap">
-                  Last updated {new Date(post.date).toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric'
-                  })}
-                </span>
+    <Page>
+      <div className="mx-auto max-w-2xl">
+        <h1 className="text-4xl font-semibold tracking-[-0.03em] sm:text-5xl">Thoughts</h1>
+        <p className="mt-4 text-muted">Notes drawn from reading, deals and conversations. They change as I learn.</p>
+        <ul className="mt-12 divide-y divide-line border-t border-line">
+          {posts.map((p) => (
+            <li key={p.slug}>
+              <Link href={`/blog/${p.slug}`} className="group block py-7">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h2 className="text-xl font-medium tracking-tight group-hover:text-muted">{p.title}</h2>
+                  <span className="shrink-0 font-mono text-xs text-muted">{p.readMins} min</span>
+                </div>
+                <p className="mt-2 line-clamp-2 text-muted">{p.excerpt}</p>
+                <time className="mt-3 block font-mono text-xs text-muted">{fmt(p.date)}</time>
               </Link>
-            ))}
-          </div>
-        )}
+            </li>
+          ))}
+        </ul>
       </div>
-    </main>
+    </Page>
   )
 }
