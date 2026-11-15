@@ -47,7 +47,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
             <div className="key relative flex min-w-0 flex-1 flex-col justify-center px-4 py-3 sm:px-5">
               <ThemeToggle className="key-btn absolute right-3 top-3" />
               <span className={`${label} flex items-center pr-10`}><span className="mr-2 h-1.5 w-1.5 shrink-0 rounded-full bg-signal" />{person.name} · {person.location}</span>
-              <h1 className="mt-2 text-xl font-semibold leading-[1.1] tracking-[-0.02em] sm:text-3xl xl:text-[40px]">{person.headline}</h1>
+              <h1 className="mt-2 text-xl font-semibold leading-[1.1] tracking-[-0.02em] sm:text-3xl xl:text-[40px]"><span className="sr-only">{person.name}: </span>{person.headline}</h1>
             </div>
           </div>
 
@@ -59,7 +59,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
                 <div className="text-[10px] leading-tight text-muted sm:text-xs">{p.label}</div>
               </div>
             ))}
-            <Expandable title="Speaking" className="key-in relative px-2.5 py-2 sm:px-3 sm:py-2.5" detail={
+            <Expandable title="Speaking" crawlable className="key-in relative px-2.5 py-2 sm:px-3 sm:py-2.5" detail={
               <>
                 <p className={label}>Speaking</p>
                 <h2 className={`mt-3 ${h2}`}>How buyers see your company, explained to the people building it.</h2>
@@ -86,7 +86,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
           </div>
 
           {/* Row 3: bio, scrolls inside the card */}
-          <Expandable title="About" className="key flex min-h-0 flex-1 flex-col p-4 sm:p-5" detail={
+          <Expandable title="About" crawlable className="key flex min-h-0 flex-1 flex-col p-4 sm:p-5" detail={
             <>
               <p className={label}>About</p>
               <h2 className="mt-3 text-3xl font-semibold tracking-[-0.02em] sm:text-5xl">{person.headline}</h2>

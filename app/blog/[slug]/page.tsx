@@ -29,7 +29,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   const share = encodeURIComponent(url)
   const ld = {
     '@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.title, datePublished: post.date,
-    description: post.excerpt, url, author: { '@type': 'Person', name: person.name, url: SITE_URL, sameAs: [links.linkedin] },
+    description: post.excerpt, url, author: { '@type': 'Person', '@id': `${SITE_URL}/#person`, name: person.name, url: SITE_URL, sameAs: [links.linkedin] },
   }
 
   return (

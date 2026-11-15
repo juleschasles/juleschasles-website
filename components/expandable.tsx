@@ -12,8 +12,10 @@ const toRect = (r: DOMRect): Rect => ({ top: r.top, left: r.left, width: r.width
 const Ctx = createContext<() => void>(() => {})
 export const useOpen = () => useContext(Ctx)
 
-export function Expandable({ title, className = '', children, detail }: {
+export function Expandable({ title, className = '', children, detail, crawlable = false }: {
   title: string; className?: string; children: React.ReactNode; detail: React.ReactNode
+  // Also render the expanded content as inert, screen-reader-only text so crawlers see it in the HTML.
+  crawlable?: boolean
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const [from, setFrom] = useState<Rect | null>(null)
@@ -64,7 +66,10 @@ export function Expandable({ title, className = '', children, detail }: {
 
   return (
     <Ctx.Provider value={open}>
-      <div ref={ref} className={`${className} ${from ? 'invisible' : ''}`}>{children}</div>
+      <div ref={ref} className={`${className} ${from ? 'invisible' : ''}`}>
+        {children}
+        {crawlable && !from && <div className="sr-only" aria-hidden="true" inert>{detail}</div>}
+      </div>
       {from && (
         <>
           <div aria-hidden className="fixed inset-0 z-40 bg-bg/60 backdrop-blur-sm transition-opacity" style={{ opacity: full ? 1 : 0, transitionDuration: `${MS}ms` }} />

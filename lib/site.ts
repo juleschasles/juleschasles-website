@@ -1,6 +1,7 @@
 // Single source of truth for site copy. Items marked [TO CONFIRM] need Jules's input.
 
-export const SITE_URL = 'https://juleschasles.com'
+// Vercel redirects the apex domain to www, so www is the canonical host.
+export const SITE_URL = 'https://www.juleschasles.com'
 
 const utm = 'utm_source=juleschasles.com&utm_medium=website'
 

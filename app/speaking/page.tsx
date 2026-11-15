@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Page, Button } from '@/components/chrome'
-import { organizers, talks, topics, links, proof } from '@/lib/site'
+import { organizers, talks, topics, links, proof, SITE_URL, person } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Speaking',
@@ -8,9 +8,26 @@ export const metadata: Metadata = {
   alternates: { canonical: '/speaking' },
 }
 
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${SITE_URL}/speaking`,
+  url: `${SITE_URL}/speaking`,
+  name: `Speaking | ${person.name}`,
+  description: 'Workshops and panels for founders on selling and valuing a business in the GCC.',
+  isPartOf: { '@id': `${SITE_URL}/#website` },
+  about: { '@id': `${SITE_URL}/#person` },
+  mainEntity: {
+    '@type': 'ItemList',
+    name: 'Headline talks',
+    itemListElement: talks.map((t, i) => ({ '@type': 'ListItem', position: i + 1, item: { '@type': 'CreativeWork', name: t.title, description: t.blurb, author: { '@id': `${SITE_URL}/#person` } } })),
+  },
+}
+
 export default function Speaking() {
   return (
     <Page>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <p className="label">Speaking</p>
       <h1 className="mt-3 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-6xl">How buyers see your company, explained to the people building it.</h1>
       <p className="mt-5 max-w-xl text-muted">{proof[4].value} {proof[4].label} across the UAE, for founders, accelerators and universities.</p>

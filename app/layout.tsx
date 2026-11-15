@@ -32,23 +32,47 @@ export const viewport: Viewport = {
   ],
 }
 
+const personId = `${SITE_URL}/#person`
+
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: person.name,
-  url: SITE_URL,
-  image: `${SITE_URL}/jules-og.jpg`,
-  jobTitle: 'Co-founder and COO',
-  description,
-  worksFor: { '@type': 'Organization', name: 'Wusool Capital', url: links.wusool },
-  address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' },
-  alumniOf: [
-    { '@type': 'CollegeOrUniversity', name: 'HEC Paris' },
-    { '@type': 'CollegeOrUniversity', name: 'Bocconi University' },
-    { '@type': 'CollegeOrUniversity', name: 'Warwick Business School' },
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: person.name,
+      description,
+      inLanguage: 'en',
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': `${SITE_URL}/#profile`,
+      url: SITE_URL,
+      name: `${person.name} | Sell-side M&A advisor for GCC founders`,
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      mainEntity: { '@id': personId },
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: person.name,
+      url: SITE_URL,
+      image: `${SITE_URL}/jules-og.jpg`,
+      jobTitle: 'Co-founder and COO',
+      description,
+      worksFor: { '@type': 'Organization', name: 'Wusool Capital', url: links.wusool },
+      address: { '@type': 'PostalAddress', addressLocality: 'Dubai', addressCountry: 'AE' },
+      alumniOf: [
+        { '@type': 'CollegeOrUniversity', name: 'HEC Paris' },
+        { '@type': 'CollegeOrUniversity', name: 'Bocconi University' },
+        { '@type': 'CollegeOrUniversity', name: 'Warwick Business School' },
+      ],
+      knowsAbout: ['Mergers and acquisitions', 'Sell-side advisory', 'Business valuation', 'Exit planning', 'Due diligence', 'GCC private markets'],
+      sameAs: [links.linkedin, links.wusool],
+    },
   ],
-  knowsAbout: ['Mergers and acquisitions', 'Sell-side advisory', 'Business valuation', 'Exit planning', 'Due diligence', 'GCC private markets'],
-  sameAs: [links.linkedin, links.wusool],
 }
 
 // Sets theme before paint to avoid a flash.
