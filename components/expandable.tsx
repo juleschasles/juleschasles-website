@@ -68,8 +68,8 @@ export function Expandable({ title, className = '', children, detail }: {
       {from && (
         <>
           <div aria-hidden className="fixed inset-0 z-40 bg-bg/60 backdrop-blur-sm transition-opacity" style={{ opacity: full ? 1 : 0, transitionDuration: `${MS}ms` }} />
-          <div role="dialog" aria-modal="true" aria-label={title} style={style} className="neu overflow-hidden">
-            <button onClick={close} aria-label="Close" className="neu-btn absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center sm:right-6 sm:top-6">
+          <div role="dialog" aria-modal="true" aria-label={title} style={style} className="key overflow-hidden">
+            <button onClick={close} aria-label="Close" className="key-btn absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center sm:right-6 sm:top-6">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden><path d="M6 6l12 12M18 6L6 18" /></svg>
             </button>
             <div className="h-full overflow-y-auto transition-opacity duration-300" style={{ opacity: content ? 1 : 0 }}>
@@ -85,7 +85,7 @@ export function Expandable({ title, className = '', children, detail }: {
 export function ExpandButton({ label }: { label: string }) {
   const open = useOpen()
   return (
-    <button onClick={open} aria-label={`Expand ${label}`} className="neu-btn flex h-9 w-9 shrink-0 items-center justify-center text-muted hover:text-fg">
+    <button onClick={open} aria-label={`Expand ${label}`} className="key-btn flex h-9 w-9 shrink-0 items-center justify-center text-muted hover:text-fg">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7" /></svg>
     </button>
   )
