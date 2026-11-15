@@ -58,7 +58,7 @@ export function Expandable({ title, className = '', children, detail }: {
     position: 'fixed', zIndex: 50,
     top: full ? 0 : from.top, left: full ? 0 : from.left,
     width: full ? '100vw' : from.width, height: full ? '100dvh' : from.height,
-    borderRadius: full ? 0 : 22,
+    borderRadius: full ? 0 : 12,
     transition: `top ${MS}ms ${EASE}, left ${MS}ms ${EASE}, width ${MS}ms ${EASE}, height ${MS}ms ${EASE}, border-radius ${MS}ms ${EASE}`,
   }
 

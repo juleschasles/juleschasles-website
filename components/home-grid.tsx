@@ -1,4 +1,4 @@
-// Home: grid layout with hardware-style outlined cards. No scroll on desktop.
+// Home: grid layout, device-style cards on Brand Book tokens. No scroll on desktop.
 import Image from 'next/image'
 import Link from 'next/link'
 import { person, proof, bio, whatIDo, links } from '@/lib/site'
@@ -6,8 +6,8 @@ import { Expandable, ExpandButton } from './expandable'
 import { ThemeToggle } from './chrome'
 import type { PostMeta } from '@/lib/posts'
 
-const label = 'font-mono text-[11px] uppercase tracking-wider text-muted'
-const h2 = 'text-3xl font-semibold tracking-[-0.03em] sm:text-5xl'
+const label = 'label'
+const h2 = 'text-3xl font-light tracking-[-0.02em] sm:text-5xl'
 
 export default function GridHome({ posts }: { posts: PostMeta[] }) {
   return (
@@ -18,7 +18,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
           {/* Photo + facts */}
           <div className="grid grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] gap-4 sm:grid-cols-[minmax(0,0.45fr)_minmax(0,1.55fr)] sm:gap-5">
             <div className="key relative aspect-square overflow-hidden p-2 sm:aspect-auto">
-              <div className="relative h-full w-full overflow-hidden rounded-2xl bg-surface-2">
+              <div className="relative h-full w-full overflow-hidden rounded-[8px] bg-surface-2">
                 <Image src="/jules.png" alt="Jules Chasles" fill priority sizes="(min-width:1024px) 22vw, 45vw" className="object-cover object-top" />
               </div>
             </div>
@@ -26,7 +26,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
             <ul className="grid h-full grid-cols-2 content-center gap-2 sm:grid-cols-3 sm:gap-3">
               {proof.map((p) => (
                 <li key={p.label} className="key-in px-2.5 py-2 sm:px-4 sm:py-3">
-                  <div className="text-base font-semibold tracking-tight sm:text-2xl">{p.value}</div>
+                  <div className="text-base font-normal tracking-tight sm:text-2xl">{p.value}</div>
                   <div className="text-[10px] leading-tight text-muted sm:text-xs">{p.label}</div>
                 </li>
               ))}
@@ -44,7 +44,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
               <p className="mt-3 text-muted">{whatIDo.intro}</p>
               <ol className="mt-6 grid gap-4 sm:grid-cols-2">
                 {whatIDo.steps.map((st, i) => (
-                  <li key={st.title} className="key-in p-5"><span className="font-mono text-xs text-signal">0{i + 1}</span><h4 className="mt-2 font-medium">{st.title}</h4><p className="mt-1 text-sm text-muted">{st.body}</p></li>
+                  <li key={st.title} className="key-in p-5"><span className="text-xs font-medium text-signal">0{i + 1}</span><h4 className="mt-2 font-medium">{st.title}</h4><p className="mt-1 text-sm text-muted">{st.body}</p></li>
                 ))}
               </ol>
               <p className="mt-6 text-sm text-muted">{whatIDo.fees}</p>
@@ -55,7 +55,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
               <span className={label}><span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-signal align-middle" />{person.name} · {person.location}</span>
               <div className="flex gap-2"><ThemeToggle className="key-btn" /><ExpandButton label="about" /></div>
             </div>
-            <h1 className="mt-5 text-3xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-4xl xl:text-5xl">{person.headline}</h1>
+            <h1 className="mt-5 text-3xl font-light leading-[1.1] tracking-[-0.02em] sm:text-4xl xl:text-[42px]">{person.headline}</h1>
             <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-muted lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:pr-1">
               <p>{whatIDo.intro} {whatIDo.fees}</p>
               {bio.map((b) => <p key={b}>{b}</p>)}
@@ -85,7 +85,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
               {posts.map((p) => (
                 <li key={p.slug}>
                   <Link href={`/blog/${p.slug}`} className="group block py-6">
-                    <div className="flex items-baseline justify-between gap-4"><span className="text-xl font-medium group-hover:text-muted">{p.title}</span><span className="shrink-0 font-mono text-xs text-muted">{p.readMins} min</span></div>
+                    <div className="flex items-baseline justify-between gap-4"><span className="text-xl font-medium group-hover:text-muted">{p.title}</span><span className="shrink-0 text-xs text-muted">{p.readMins} min</span></div>
                     <p className="mt-2 text-muted">{p.excerpt}</p>
                   </Link>
                 </li>
@@ -103,7 +103,7 @@ export default function GridHome({ posts }: { posts: PostMeta[] }) {
                 <Link href={`/blog/${p.slug}`} className="key-in group block px-5 py-4 transition">
                   <div className="flex items-baseline justify-between gap-3">
                     <span className="font-medium group-hover:text-muted">{p.title}</span>
-                    <span className="shrink-0 font-mono text-[11px] text-muted">{p.readMins} min</span>
+                    <span className="shrink-0 text-xs text-muted">{p.readMins} min</span>
                   </div>
                   <p className="mt-1 line-clamp-2 text-sm text-muted">{p.excerpt}</p>
                 </Link>
