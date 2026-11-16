@@ -25,7 +25,7 @@ type Action = { label: string; href: string; kind: 'external' | 'mail' | 'link';
 export const contactActions: Action[] = [
   { label: 'LinkedIn', href: links.linkedin, kind: 'external', icon: '↗' },
   { label: 'Email', href: `mailto:${links.email}`, kind: 'mail', icon: '@' },
-  { label: 'Speaker', href: '/speaking', kind: 'link', icon: '↗' },
+  { label: 'Speaker', href: links.speaking, kind: 'mail', icon: '@' },
 ]
 
 export const leadMagnetActions: Action[] = [

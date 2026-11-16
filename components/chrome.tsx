@@ -102,7 +102,8 @@ export function Page({ children }: { children: React.ReactNode }) {
 }
 
 export function Button({ href, children, external = true }: { href: string; children: React.ReactNode; primary?: boolean; external?: boolean }) {
-  const ext = external ? { target: '_blank', rel: 'noopener noreferrer' } : {}
+  // mailto links open the mail app, never a blank tab
+  const ext = external && !href.startsWith('mailto:') ? { target: '_blank', rel: 'noopener noreferrer' } : {}
   return (
     <a href={href} {...ext} className="key-btn inline-flex h-11 items-center justify-center gap-2 px-5 text-sm font-medium">
       {children}
